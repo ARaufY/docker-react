@@ -7,4 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true araufy/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "react-app"
+  env: "Reactapp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-516270676966"
+  bucket_path: "react-app"
+
+  on:
+    branch: main
   
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
